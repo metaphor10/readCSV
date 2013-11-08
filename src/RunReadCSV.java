@@ -5,34 +5,51 @@ import javax.swing.JOptionPane;
 
 public class RunReadCSV {
 
-	public static ArrayList<ComputerObj> computersInTheDepatment = new ArrayList<ComputerObj>();
+	public static ArrayList<String> totalFile = new ArrayList<String>();
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
+		Boolean running=true;
 		// TODO Auto-generated method stub
-		String str = JOptionPane.showInputDialog(null, "Enter some text : ", 
-				"Roseindia.net", 1);
-		System.out.println(str.charAt(0));
-		switch(str.charAt(0))
+		String str ;
+		ReadCSVA first= new ReadCSVA("/Users/borochov/Desktop/verify/PublicSafety.csv");
+		while (running)
 		{
-			case '1':
+			str = JOptionPane.showInputDialog(null, "Enter some text : ", 1);
+			switch(str.charAt(0))
 			{
-				//init the array
-				ReadCSVA first= new ReadCSVA("/Users/borochov/Desktop/verify/PublicSafety.csv");
-				first.run();
-			}break;
-			case '2':
-			{
-				System.out.println(computersInTheDepatment.get(0).toString());
+				case '1':
+				{
+					//init the array
+					
+					first.run();
+				}break;
+				case '2':
+				{
+					
+					first.printToFile();
+				}break;
+				case '3':
+				{
+					running = false;
+				}break;
+				case '4':
+				{
+					
+					first.searchFile(JOptionPane.showInputDialog(null, "term to search : ", 1));
+				}break;
+				default:
+				{
+					
+				}
 			}
-			default:
-			{
-				
-			}
+			
 		}
 		
+		
 	}
+	
 
 }
+

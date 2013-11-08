@@ -12,8 +12,10 @@ import javax.swing.JOptionPane;
 public class ReadCSVA {
  
   String csvFile;
-  ArrayList<String> totalFile= new ArrayList<String>();
-  Boolean isTopOfPage;
+  String cvsSplitBy = ";";
+  Boolean[] hasBeenModified;
+  
+  
   public ReadCSVA(String inputFileLocation){
 	  csvFile=inputFileLocation;
 	  
@@ -24,15 +26,15 @@ public class ReadCSVA {
 	
 	BufferedReader br = null;
 	String line = "";
-	String cvsSplitBy = ";";
+	
 	
 		
-	try
+	/*try
 	{
 		
 		FileWriter out= new FileWriter("/Users/borochov/Desktop/verify/computers.csv",true);
 		
-	    PrintWriter writeToFile = new PrintWriter(out); 
+	    PrintWriter writeToFile = new PrintWriter(out); */
 	    
  
 	try {
@@ -42,7 +44,7 @@ public class ReadCSVA {
 		while ((line = br.readLine()) != null) {
 		//ComputerObj	temp = new ComputerObj();
 		String temp1 = new String(line);
-		totalFile.add(temp1);
+		RunReadCSV.totalFile.add(temp1);
 		        // use comma as separator
 			String[] computer = line.split(cvsSplitBy);
 			
@@ -62,7 +64,8 @@ public class ReadCSVA {
 				
 				
 		}
-		for (String temp:totalFile)
+		hasBeenModified = new Boolean[RunReadCSV.totalFile.size()];
+		/*for (String temp:RunReadCSV.totalFile)
 		{
 			//temp+="; test";
 			String[] computer = temp.split(cvsSplitBy);
@@ -70,7 +73,7 @@ public class ReadCSVA {
 			writeToFile.println(temp);
 			
 		}
-		writeToFile.flush();
+		writeToFile.flush();*/
 	} catch (FileNotFoundException e) {
 		e.printStackTrace();
 	} catch (IOException e) {
@@ -84,14 +87,54 @@ public class ReadCSVA {
 			}
 		}
 	}
+	/*
 	writeToFile.close();
 	out.close();
   }catch (IOException e) {
-  }
+  }*/
 		
 	
 	System.out.println("Done");
 
+  }
+  public void printToFile(){
+		try
+		{
+			
+			FileWriter out= new FileWriter("/Users/borochov/Desktop/verify/computers.csv",true);
+			
+		    PrintWriter writeToFile = new PrintWriter(out); 
+		    for (String temp:RunReadCSV.totalFile)
+			{
+				//temp+="; test";
+				String[] computer = temp.split(cvsSplitBy);
+				System.out.println(computer[computer.length-1]);
+				writeToFile.println(temp);
+				
+			}
+		    writeToFile.close();
+			out.close();
+		  }catch (IOException e) {
+		  }
+	}
+  public void searchFile(String toSearch)
+  {
+	  Boolean NeedsToBeReplaced=false;
+	  
+	  for (int y=0;y<RunReadCSV.totalFile.size();y++)
+	  {
+		  String[] computer = RunReadCSV.totalFile.get(y).split(cvsSplitBy);
+		  for (int i=0;i<computer.length;i++)
+		  {
+			  if(computer[i].equals(toSearch))
+			  {
+				  String temp=RunReadCSV.totalFile.get(y).replace("No", "Yes");
+				  RunReadCSV.totalFile.set(y, temp);
+				  
+			  }
+		  }
+		  
+	  }
   }
  
 }

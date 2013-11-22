@@ -126,13 +126,14 @@ public class ReadCSVA {
 	  {
 		  String[] computer = RunReadCSV.totalFile.get(y).split(cvsSplitBy);
 		  
+		  
 		  for (int i=0;i<computer.length;i++)
 		  {
 			  
 			  if(computer[i].equals(toSearch))
 			  {
 				  
-				 
+				 System.out.println(computer[14]);
 				  if (computer[14].equals(""))
 				  {
 					  option=JOptionPane.showInputDialog(null, "1 or 2 ", 1);
@@ -140,11 +141,34 @@ public class ReadCSVA {
 					  {
 					  	case "1":
 					  	{
-						  computer[14].concat("Microsoft Windows XP Professional");
+						  
+					  		computer[14]=new String("Microsoft Windows XP Professional");
+							 String temp1="";
+							 for (int x=0;x<computer.length;x++)
+							 {
+								 
+								 temp1+=computer[x];
+								 temp1+=";";
+							 }
+							  
+						  
+							 RunReadCSV.totalFile.set(y, temp1);
+							 String temp=RunReadCSV.totalFile.get(y).replace("No", "Yes");
+							  RunReadCSV.totalFile.set(y, temp);
 					  	}break;
 					  	case "2":
 					  	{
-						  computer[14].concat("Microsoft Windows 7 Professional Edition, 64-bit");
+						  computer[14]=new String("Microsoft Windows 7 Professional Edition, 64-bit");
+						 String temp1="";
+						 for (int x=0;x<computer.length;x++)
+						 {
+							 
+							 temp1+=computer[x];
+							 temp1+=";";
+						 }
+						  
+						 RunReadCSV.totalFile.set(y, temp1);
+						  
 					  	}break;
 					  	default :
 					  	{

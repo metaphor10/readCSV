@@ -13,10 +13,12 @@ public class RunReadCSV {
 		Boolean running=true;
 		// TODO Auto-generated method stub
 		String str ;
-		ReadCSVA first= new ReadCSVA("/Users/borochov/Desktop/verify/PublicSafety.csv");
+		
+		
+		ReadCSVA first= new ReadCSVA("/Users/borochov/Desktop/verify/computers.csv");
 		while (running)
 		{
-			str = JOptionPane.showInputDialog(null, "Enter some text : ", 1);
+			str = JOptionPane.showInputDialog(null, "Chose : ", 1);
 			switch(str.charAt(0))
 			{
 				case '1':
@@ -29,6 +31,7 @@ public class RunReadCSV {
 				{
 					
 					first.printToFile();
+					running=false;
 				}break;
 				case '3':
 				{

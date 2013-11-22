@@ -14,6 +14,7 @@ public class ReadCSVA {
   String csvFile;
   String cvsSplitBy = ";";
   Boolean[] hasBeenModified;
+  String option;
   
   
   public ReadCSVA(String inputFileLocation){
@@ -46,7 +47,7 @@ public class ReadCSVA {
 		String temp1 = new String(line);
 		RunReadCSV.totalFile.add(temp1);
 		        // use comma as separator
-			String[] computer = line.split(cvsSplitBy);
+			//String[] computer = line.split(cvsSplitBy);
 			
 			//System.out.println("Country [code=" + blotter[8]+"@");
 			//JOptionPane.showMessageDialog (null, "Message", "Title", JOptionPane.INFORMATION_MESSAGE);
@@ -101,14 +102,14 @@ public class ReadCSVA {
 		try
 		{
 			
-			FileWriter out= new FileWriter("/Users/borochov/Desktop/verify/computers.csv",true);
+			FileWriter out= new FileWriter("/Users/borochov/Desktop/verify/computers.csv",false);
 			
 		    PrintWriter writeToFile = new PrintWriter(out); 
 		    for (String temp:RunReadCSV.totalFile)
 			{
 				//temp+="; test";
-				String[] computer = temp.split(cvsSplitBy);
-				System.out.println(computer[computer.length-1]);
+				//String[] computer = temp.split(cvsSplitBy);
+				//System.out.println(computer[computer.length-1]);
 				writeToFile.println(temp);
 				
 			}
@@ -124,12 +125,42 @@ public class ReadCSVA {
 	  for (int y=0;y<RunReadCSV.totalFile.size();y++)
 	  {
 		  String[] computer = RunReadCSV.totalFile.get(y).split(cvsSplitBy);
+		  
 		  for (int i=0;i<computer.length;i++)
 		  {
+			  
 			  if(computer[i].equals(toSearch))
 			  {
-				  String temp=RunReadCSV.totalFile.get(y).replace("No", "Yes");
-				  RunReadCSV.totalFile.set(y, temp);
+				  
+				 
+				  if (computer[14].equals(""))
+				  {
+					  option=JOptionPane.showInputDialog(null, "1 or 2 ", 1);
+					  switch(option)
+					  {
+					  	case "1":
+					  	{
+						  computer[14].concat("Microsoft Windows XP Professional");
+					  	}break;
+					  	case "2":
+					  	{
+						  computer[14].concat("Microsoft Windows 7 Professional Edition, 64-bit");
+					  	}break;
+					  	default :
+					  	{
+					  		
+					  	}break;
+					  }
+					  
+				  }else if (computer[14].equals("Microsoft Windows XP Professional"))
+				  {
+					  String temp=RunReadCSV.totalFile.get(y).replace("No", "Yes");
+					  RunReadCSV.totalFile.set(y, temp);
+				  }else
+				  {
+					  
+				  }
+				  
 				  
 			  }
 		  }

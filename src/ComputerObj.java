@@ -9,7 +9,7 @@ public class ComputerObj {
 		try
 		{
 			
-			FileWriter out= new FileWriter("/Users/borochov/Desktop/verify/computers.csv",true);
+			FileWriter out= new FileWriter("/Users/borochov/Desktop/verify/computers.csv",false);
 			
 		    PrintWriter writeToFile = new PrintWriter(out); 
 		    for (String temp:RunReadCSV.totalFile)

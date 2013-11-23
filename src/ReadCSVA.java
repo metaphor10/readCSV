@@ -121,6 +121,7 @@ public class ReadCSVA {
   public void searchFile(String toSearch)
   {
 	  Boolean NeedsToBeReplaced=false;
+	  System.out.print(toSearch);
 	  
 	  for (int y=0;y<RunReadCSV.totalFile.size();y++)
 	  {
@@ -132,7 +133,7 @@ public class ReadCSVA {
 			  
 			  if(computer[i].equals(toSearch))
 			  {
-				  
+				 System.out.println(computer[11]);
 				 System.out.println(computer[14]);
 				  if (computer[14].equals(""))
 				  {
